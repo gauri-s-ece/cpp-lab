@@ -14,8 +14,6 @@ public:
         a = new int[size];
         top = -1;
     }
-
-    // Push
     void push(int x)
     {
         if (top == size - 1)
@@ -26,8 +24,6 @@ public:
             a[top] = x;
         }
     }
-
-    // Pop
     void pop()
     {
         if (top == -1)
@@ -38,17 +34,12 @@ public:
             top--;
         }
     }
-
-    // Display
     void display()
     {
         for (int i = top; i >= 0; i--)
             cout << a[i] << " ";
-
         cout << endl;
     }
-
-    // Destructor
     ~Stack()
     {
         delete[] a;
@@ -58,18 +49,13 @@ public:
 int main()
 {
     Stack s(5);
-
     s.push(10);
     s.push(20);
     s.push(30);
-
     cout << "Stack: ";
     s.display();
-
     s.pop();
-
     cout << "After pop: ";
     s.display();
-
     return 0;
 }
