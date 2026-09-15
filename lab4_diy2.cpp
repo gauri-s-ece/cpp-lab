@@ -1,72 +1,75 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Stack{
-    int *arr;
+
+class Stack
+{
+    int *a;
     int top;
     int size;
+
 public:
-    Stack(int n){
-        size=n;
-        top=-1;
-        arr=new int[size];
+    Stack(int n)
+    {
+        size = n;
+        a = new int[size];
+        top = -1;
     }
-    void push(int x){
-        if(top==size-1)
-            cout<<"Stack Overflow"<<endl;
-        else{
-            arr[++top]=x;
-            cout<<"Pushed: "<<x<<endl;
-        }
-    }
-    void pop(){
-        if(top==-1)
-            cout<<"Stack Underflow"<<endl;
+
+    // Push
+    void push(int x)
+    {
+        if (top == size - 1)
+            cout << "Stack Overflow\n";
         else
-            cout<<"Popped: "<<arr[top--]<<endl;
-    }
-    void display(){
-        if(top==-1){
-            cout<<"Stack is empty"<<endl;
-            return;
+        {
+            top++;
+            a[top] = x;
         }
-        cout<<"Stack: ";
-        for(int i=top;i>=0;i--)
-            cout<<arr[i]<<" ";
-        cout<<endl;
     }
-    ~Stack(){
-        delete[] arr;
+
+    // Pop
+    void pop()
+    {
+        if (top == -1)
+            cout << "Stack Underflow\n";
+        else
+        {
+            cout << "Popped: " << a[top] << endl;
+            top--;
+        }
+    }
+
+    // Display
+    void display()
+    {
+        for (int i = top; i >= 0; i--)
+            cout << a[i] << " ";
+
+        cout << endl;
+    }
+
+    // Destructor
+    ~Stack()
+    {
+        delete[] a;
     }
 };
-int main(){
-    int n,x,choice;
-    cout<<"Enter stack size: ";
-    cin>>n;
-    Stack s(n);
-    do{
-        cout<<"1. Push"<<endl;
-        cout<<"2. Pop"<<endl;
-        cout<<"3. Display"<<endl;
-        cout<<"4. Exit"<<endl;
-        cout<<"Enter choice: ";
-        cin>>choice;
-        switch(choice){
-            case 1:
-                cout<<"Enter value: ";
-                cin>>x;
-                s.push(x);
-                break;
-            case 2:
-                s.pop();
-                break;
-            case 3:
-                s.display();
-                break;
-            case 4:
-                break;
-            default:
-                cout<<"Invalid choice"<<endl;
-        }
-    }while(choice!=4);
+
+int main()
+{
+    Stack s(5);
+
+    s.push(10);
+    s.push(20);
+    s.push(30);
+
+    cout << "Stack: ";
+    s.display();
+
+    s.pop();
+
+    cout << "After pop: ";
+    s.display();
+
     return 0;
 }
